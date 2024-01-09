@@ -12,11 +12,15 @@ Execute `bun install` in the root of the monorepo to install all dependencies.
 
 Create `.env.local` file with the following variables:
 
-- MONGO_URL="mongodb+srv://{USER}:{PASSWORD}@{URL}/{DB_NAME}?retryWrites=true&w=majority"
-- JWT_SECRET="{SOME_SECRET_STRING}"
-- INITIAL_ADMIN_EMAIL="{SOME_INITIAL_USER_EMAIL}"
-- INITIAL_ADMIN_PASSWORD="{SOME_INITIAL_USER_PASSWORD}" -> This will be hashed into MD5, and the result logged to the console for easy login.
-- NODE_ENV="development"
+```
+MONGO_URL="mongodb+srv://{USER}:{PASSWORD}@{URL}/{DB_NAME}?retryWrites=true&w=majority"
+JWT_SECRET="{SOME_SECRET_STRING}"
+INITIAL_ADMIN_EMAIL="{SOME_INITIAL_USER_EMAIL}"
+INITIAL_ADMIN_PASSWORD="{SOME_INITIAL_USER_PASSWORD}"
+NODE_ENV="development"
+```
+
+The initial password will be hashed into MD5, and the result logged to the console for easy login. This is because the front will be hashing the password before sending the post, so testing between front and swagger has to be the same.
 
 Inside the API root, execute `bun dev` to run the API on port 3001. This will create the intial user on the DB if it does not exist.
 
